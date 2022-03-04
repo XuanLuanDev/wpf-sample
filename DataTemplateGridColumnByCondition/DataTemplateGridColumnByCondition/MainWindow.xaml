@@ -1,0 +1,39 @@
+﻿<Window x:Class="DataTemplateGridColumnByCondition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataTemplateGridColumnByCondition"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="ExcellentTemplate">
+            <TextBlock Margin="2" Text="Excellent" Foreground="Red"/>
+        </DataTemplate>
+        <DataTemplate x:Key="GoodTemplate">
+            <TextBlock Margin="2" Text="Good" Foreground="Yellow"/>
+        </DataTemplate>
+        <DataTemplate x:Key="MediumTemplate">
+            <TextBlock Margin="2" Text="Medium" Foreground="Green"/>
+        </DataTemplate>
+        <DataTemplate x:Key="BadTemplate">
+            <TextBlock Margin="2" Text="Bad" Foreground="Gray"/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <DataGrid ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Student Code" Binding="{Binding Code}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Total Score" Binding="{Binding TotalScore}"/>
+                <DataGridTemplateColumn Header="Grade">
+                    <DataGridTemplateColumn.CellTemplateSelector>
+                        <local:StudentTemplateSelector
+                         BadTemplate="{StaticResource BadTemplate}" MediumTemplate="{StaticResource MediumTemplate}" 
+                         ExcellentTemplate="{StaticResource ExcellentTemplate}" GoodTemplate="{StaticResource GoodTemplate}"/>
+                    </DataGridTemplateColumn.CellTemplateSelector>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

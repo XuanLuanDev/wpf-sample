@@ -1,0 +1,35 @@
+﻿<Window x:Class="AutoSortGridViewInListview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoSortGridViewInListview"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        
+        <!--GridView with custum Glyph-->
+        <ListView ItemsSource="{Binding }"
+      IsSynchronizedWithCurrentItem="True"
+                  local:GridViewSort.SortGlyphAscending="/Images/sort-ascending.png"
+                  local:GridViewSort.SortGlyphDescending="/Images/sort-descending.png"
+      local:GridViewSort.AutoSort="True">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="First Name"
+                                DisplayMemberBinding="{Binding FirstName}"
+                                local:GridViewSort.PropertyName="FirstName"/>
+                        <GridViewColumn Header="Last Name"
+                                DisplayMemberBinding="{Binding LastName}"
+                                local:GridViewSort.PropertyName="LastName"/>
+                        <GridViewColumn Header="Date of birth"
+                                DisplayMemberBinding="{Binding DateOfBirth}"
+                                local:GridViewSort.PropertyName="DateOfBirth"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+       
+    </Grid>
+</Window>
